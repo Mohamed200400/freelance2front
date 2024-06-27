@@ -1,6 +1,0 @@
-services:
-  - type: web
-    name: front
-    env: static
-    staticPublishPath: dist
-    buildCommand: npm install && npm run build
