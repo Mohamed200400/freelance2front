@@ -3,4 +3,4 @@ services:
     name: front
     env: static
     staticPublishPath: dist
-    buildCommand: npm run build
+    buildCommand: npm install && npm run build
