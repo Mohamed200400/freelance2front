@@ -132,15 +132,21 @@ const Info = () => {
 
   return (
     <div className='w-85 max m-auto'>
-      <h1 className=' tit mb-5'>بيانات المقياس</h1>
+      <h1 className=' tit mb-5'>قواعد بيانات المقياس  </h1>
       <table className='tab mt-5 mb-5 w-100'>
         <thead className='tab'>
           <tr>
-            <th className='tab text-center text30 b1 colw'  colSpan={2}>نسبة الذكور و الإناث</th>
+            <th className='tab text-center text30 b1 colw'  colSpan={3}>نسبة المشاركين بحسب الجنس</th>
           </tr>
         </thead>
         <tbody  className='tab'>
+        <tr>
+            <td className='tab text25 b2'>العدد </td>
+            <td className='tab text25 b2'>{male_length } </td>
+            <td className='tab text25 b2'> {female } </td>
+          </tr>
           <tr>
+            <td className='tab text25 b2'>النسبة </td>
             <td className='tab text25 b2'>نسبة الذكور {male_length && percent && (male_length * percent).toFixed(2)} %</td>
             <td className='tab text25 b2'> نسبة الإناث {female && percent && (female * percent).toFixed(2)} %</td>
           </tr>
@@ -178,7 +184,8 @@ const Info = () => {
             <td className='tab text25 b2'>{age8 && percent && (age8 * percent).toFixed(2)} %</td>
           </tr>
           <tr>
-            <td className='tab text25 b2'>متوسط نسبة قبول الذات</td>
+            <td className='tab text25 b2'>متوسطات نتائج
+            تقدير الذات</td>
             <td className='tab text25 b2'>{av1  && (av1 / age1).toFixed(2)} %</td>
             <td className='tab text25 b2'>{av2  && (av2 / age2).toFixed(2)} %</td>
             <td className='tab text25 b2'>{av3  && (av3 / age3).toFixed(2)} %</td>
@@ -187,6 +194,17 @@ const Info = () => {
             <td className='tab text25 b2'>{av6  && (av6 / age6).toFixed(2)} %</td>
             <td className='tab text25 b2'>{av7  && (av7 / age7).toFixed(2)} %</td>
             <td className='tab text25 b2'>{av8  && (av8 / age8).toFixed(2)} %</td>
+          </tr>
+          <tr>
+            <td className='tab text25 b2'>العدد</td>
+            <td className='tab text25 b2'>{age1  &&  age1} </td>
+            <td className='tab text25 b2'>{age2  &&  age2} </td>
+            <td className='tab text25 b2'>{age3  &&  age3} </td>
+            <td className='tab text25 b2'>{age4  &&  age4} </td>
+            <td className='tab text25 b2'>{age5  &&  age5} </td>
+            <td className='tab text25 b2'>{age6  &&  age6} </td>
+            <td className='tab text25 b2'>{age7  &&  age7} </td>
+            <td className='tab text25 b2'>{age8  &&  age8} </td>
           </tr>
         </tbody>
       </table>

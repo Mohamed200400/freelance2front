@@ -1,14 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { CategContext } from '../Context/ResultContext'
 import { NextContext } from '../Context/Next'
+import Cookies from 'universal-cookie'
 
 const Question = ({info}) => {
     const {result , setResult } = useContext(CategContext)
     const {next,setNext} = useContext(NextContext)
     const [selectedCheckbox,setSelectedCheckbox] = useState(null)
+    const cookie = new Cookies()
     
     console.log(result);
     const handleChange = (index)=>{
+      cookie.set("d",index)
       setSelectedCheckbox(index)
       setNext(index)
     }

@@ -33,6 +33,7 @@ const Login = () => {
   }
 
   return (
+    
     <div className='w'>
     <h1 className='mb-5'>صفحة تسجيل الدخول </h1>
     <div className='left text mt-1'>البريد الإلكتروني :</div>
@@ -44,7 +45,8 @@ const Login = () => {
       fetch_login()
     }}>تسجيل الدخول</button>
     <p className='text'>إذا لم يكن لديك حساب قم<Link to={"/register"} className='me-2' >بإنشاء واحد</Link>  </p>
-
+    <p className='text'>هل نسيت <Link to={"/forg"} className='me-2' >كلمة المرور</Link>  </p>
+    
     </div>
   )
 }

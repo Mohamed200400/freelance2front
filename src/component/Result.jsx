@@ -1,14 +1,16 @@
 import axios from 'axios'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { CategContext } from '../Context/ResultContext'
 import Cookies from 'universal-cookie'
 import { Link } from 'react-router-dom'
 import Refresh from './Refresh'
-
-
+import jsPDF  from "jspdf";
+import html2canvas from "html2canvas"
+import { useReactToPrint } from 'react-to-print';
 
 const Result = () => {
   Refresh()
+  const pdfRef = useRef()
   const { result } = useContext(CategContext)
   const [ra, setRa] = useState(null)
   const [user,setUser] = useState()
@@ -24,6 +26,45 @@ const Result = () => {
   const [p3, setP3] = useState(0)
   const cookie = new Cookies()
   const emailp = cookie.get("email")
+  const [text , setText] = useState("")
+
+  const contentToPrint = useRef(null);
+
+  const handlePrint = useReactToPrint({
+    content: () => contentToPrint.current,
+    documentTitle: "Print This Document",
+    onBeforePrint: () => console.log("before printing..."),
+    onAfterPrint: () => console.log("after printing..."),
+    removeAfterPrint: true,
+  });
+
+  const downloadPDF = () => {
+    const input = pdfRef.current;
+    
+    html2canvas(input)
+      .then((canvas) => {
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        const imgWidth = 210; // A4 width in mm
+        const pageHeight = 295; // A4 height in mm
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+        let heightLeft = imgHeight;
+        let position = 0;
+
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+
+        while (heightLeft >= 0) {
+          position = heightLeft - imgHeight;
+          pdf.addPage();
+          pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+          heightLeft -= pageHeight;
+        }
+
+        pdf.save('download.pdf');
+      });
+  };
+
 
   const userInfo = async()=>{
 
@@ -88,18 +129,23 @@ const Result = () => {
       const average = totR / (p1 + p2 + p3)
       if (average >= 1.00 && average <= 1.79) {
         result_fn((average*20).toFixed(2))
+        setText("لديك انخفاض شديد في تقديرك لذاتك، وتحمل صورة سلبية عن نفسك، مع انعدام للثقة وشعور بالعجز وعدم الرضا عن الذات والحياة. ندعوك لمراجعة مختص في العلاج النفسي للحصول على الدعم المناسب.")
         setRa("منخفض جدًا")
       } else if (average >= 1.80 && average <= 2.59) {
         result_fn((average*20).toFixed(2))
+        setText("لديك انخفاض في تقديرك لذاتك وتحمل صورة سلبية عن نفسك. ندعوك لمراجعة مختص في العلاج النفسي للحصول على الدعم المناسب.")
         setRa("منخفض")
       } else if (average >= 2.60 && average <= 3.39) {
         result_fn((average*20).toFixed(2))
+        setText("لديك مستوى متوسط لتقديرك الذاتي، وتذبذب في الشعور بقيمة الذات والثقة، وتحمل صورة مشوّهة عن نفسك. وندعوك لتعزيز تقديرك الذاتي بالأفكار الإيجابية والسلوك التوكيدي وبناء صورة إيجابية عن ذاتك")
         setRa("متوسط")
       } else if (average >= 3.40 && average <= 4.19) {
         result_fn((average*20).toFixed(2))
+        setText("لديك تقدير إيجابي لذاتك، وتحمل صورة إيجابية عن نفسك، وتشعر بقيمتك وثقتك، ولديك استعداد جيد لمواجهة التحديات.")
         setRa("مرتفع")
       } else if (average >= 4.20 && average <= 5.00) {
         result_fn((average*20).toFixed(2))
+        setText("لديك تقدير إيجابي لذاتك، وتشعر بقيمتك وثقتك، ومدرك لجوانب قوتك، وتمتلك علاقات إيجابية، وتتعامل مع التحديات بثقة.")
         setRa("مرتفع جدًا")
       } else {
         setRa("قيمة غير معروفة")
@@ -175,8 +221,9 @@ const Result = () => {
 
 
   return (
-    <div className='w-100 max m-auto'>
-      {ra && <div className='w-85 max m-auto'>
+    <div className='w-100 max m-auto' ref={pdfRef} >
+      <div ref={contentToPrint}>
+      {ra && <div className='w-85 max m-auto' >
         <h1 className=' tit mb-5'>نتيجة مقياس تقدير الذات</h1>
 
         {user && <ul>
@@ -192,8 +239,34 @@ const Result = () => {
             <th className='tab text-center text30 b1 colw' colSpan={2}>المستوى العام لتقدير الذات</th>
           </thead>
           <tbody className='tab'>
+            <tr>
             <td className='tab text25 b2'>مستوى <span className='fw-bold colg'>{ra}</span> لتقدير الذات</td>
             <td className='tab text25 b2'>النسبة <span className='fw-bold colg'>{`${((totR / (p1 + p2 + p3)) * 20).toFixed(2)} % `}</span></td>
+            </tr>
+            <tr>
+              <td className='tab text25 b2' colSpan={2}>{text && text}</td>
+            </tr>
+          </tbody>
+        </table>
+
+
+        <table className='tab mt-5 mb-5 w-100'>
+          <thead className='tab'>
+            <th className='tab text-center text25 b1 colw' >مستوى منخفض جدا لتقدير الذات</th>
+            <th className='tab text-center text25 b1 colw' >مستوى منخفض لتقدير الذات</th>
+            <th className='tab text-center text25 b1 colw' >مستوى متوسط لتقدير الذات</th>
+            <th className='tab text-center text25 b1 colw' >مستوى مرتفع لتقدير الذات</th>
+            <th className='tab text-center text25 b1 colw' >مستوى مرتفع جدا لتقدير الذات</th>
+          </thead>
+          <tbody className='tab'>
+            <td className='tab text25 b2'>لديك انخفاض شديد في تقديرك لذاتك، وتحمل صورة سلبية عن نفسك، مع انعدام للثقة وشعور بالعجز وعدم الرضا عن الذات والحياة.
+            ندعوك لمراجعة مختص في العلاج النفسي للحصول على الدعم المناسب.</td>
+            <td className='tab text25 b2'>لديك انخفاض في تقديرك لذاتك وتحمل صورة سلبية عن نفسك. 
+            ندعوك لمراجعة مختص في العلاج النفسي للحصول على الدعم المناسب.</td>
+            <td className='tab text25 b2'>لديك مستوى متوسط لتقديرك الذاتي، وتذبذب في الشعور بقيمة الذات والثقة، وتحمل صورة مشوّهة عن نفسك.
+            وندعوك لتعزيز تقديرك الذاتي بالأفكار الإيجابية والسلوك التوكيدي وبناء صورة إيجابية عن ذاتك</td>
+            <td className='tab text25 b2'>لديك تقدير إيجابي لذاتك، وتحمل صورة إيجابية عن نفسك، وتشعر بقيمتك وثقتك، ولديك استعداد جيد لمواجهة التحديات.</td>
+            <td className='tab text25 b2'>لديك تقدير إيجابي لذاتك، وتشعر بقيمتك وثقتك، ومدرك لجوانب قوتك، وتمتلك علاقات إيجابية، وتتعامل مع التحديات بثقة</td>
           </tbody>
         </table>
 
@@ -255,11 +328,18 @@ const Result = () => {
 
     </div>
 
-
-
+    <div className='d-flex row'>
+        <div>
+    <button className='text mt-5 mb-3  btn1 btn2 me-2 '  onClick={handlePrint}>طباعة  </button> 
+    <button className='text mt-5 mb-3  btn1 btn2 me-2' onClick={downloadPDF}> تحميل PDF</button> 
     <button className='text mt-5 mb-3  btn1 btn2 '><Link className='add2' to={'/'}>تسجيل الخروج </Link></button> 
+    </div>
     
-    
+    <div className='text-center text mt-3'>حقوق مقياس تقدير الذات للكبار محفوظة
+    لدى مركز تقدير الذات</div>
+    <div className='text-center text mt-2'>هل ترغب بتحسين وتعزيز تقديرك لذاتك؟ <a href='https://selfesteem.com.sa/' target='_blank'>إضغط هنا</a></div>
+    </div>
+    </div>
     </div>
   )
 }

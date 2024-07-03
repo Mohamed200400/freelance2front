@@ -53,7 +53,8 @@ const Dashboard = () => {
   },[up])
   return (
     <div className=' mt-5 mb-5 w-100 max m-auto'>
-      <Link to={"/info"} className='add  '>تفاصيل البيانات </Link>
+      <Link to={"/info"} className='add  '>قواعد البيانات </Link>
+      <Link to={"/home"} className='add2 me-2 '>رجوع </Link>
       <table className='tab m-auto mt-4 mb-4'>
         <thead className='tab'>
           <th className='tab'>التسلسل</th>
@@ -109,7 +110,7 @@ const Dashboard = () => {
         </tbody>
       </table>
       <Link to={"/addquestion"} className='add '>أضف سؤال + </Link>
-      <Link to={"/home"} className='add2 me-2 '>رجوع </Link>
+     
     </div>
   )
 }

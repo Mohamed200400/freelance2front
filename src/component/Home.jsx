@@ -18,6 +18,7 @@ const Home = () => {
   const [nextt,setNextt] = useState(0) 
   const [taile,setTaile] = useState()
   const admin = cookie.get("isAdmin")
+  const d = cookie.get("d")
 
   const fetch_question = async ()=>{
     try{
@@ -44,11 +45,11 @@ const Home = () => {
   },[])
   return (
     <div className='w-100 max m-auto'>
-      <div className=' mt-4 mb btn1 '>عدد مستعملي المقياس : {taile && taile}</div>
+      {admin && <div className=' mt-4 mb btn1 '>عدد مستعملي المقياس : {taile && taile}</div>}
       {admin && <Link to={"/dashboard"} className='add2 ' >إعدادات الإختبار<DiAptana className='icon me-2'/></Link>}
-      <h2 className='m-auto mb-5 w-75 mt-5'>بداية المقياس :</h2>
+      <h2 className='m-auto mb-5 w-75 mt-5'></h2>
       {questions && <Question info={questions[nextt]} />}
-      {questions && nextt < questions.length-1 ? <button 
+      {questions && nextt < questions.length-1 ? <div><button 
       className='text mt-4 mb-3  btn1 btn2'
       disabled={next === null}
        onClick={()=>{
@@ -71,7 +72,40 @@ const Home = () => {
         }
 
         setNextt(prev => prev + 1 )
-      }}>التالي</button> : <button 
+      }}>التالي</button>
+      
+      <button 
+      className='text mt-4 mb-3  btn1 '
+      disabled={(result.d1 + result.d2 + result.d3) === 0 }
+       onClick={()=>{
+
+        
+
+        if (questions[nextt-1].category === "d1" ){
+          setResult((prev) =>({
+            ...prev,
+            d1 : prev.d1 - d
+          }) )
+        }else if (questions[nextt-1].category === "d2" ){
+          setResult((prev) =>({
+            ...prev,
+            d2 : prev.d2 - d
+          }) )
+        }else if (questions[nextt-1].category === "d3" ){
+          setResult((prev) =>({
+            ...prev,
+            d3 : prev.d3 - d
+          }) )
+        }
+
+        setNextt(prev => prev - 1 )
+      }}>السابق</button>
+      
+      
+      </div>
+      
+      
+      : <button 
       className='text mt-4 mb-3  btn1 btn2'
       disabled={next === null} 
       onClick={()=>{

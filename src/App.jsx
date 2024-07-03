@@ -13,6 +13,8 @@ import Add from './component/Add'
 import Founder from './component/Founder'
 import Note from './component/Note'
 import Info from './component/Info'
+import Forg from './component/Forg'
+
 
 function App() {
  
@@ -32,6 +34,7 @@ function App() {
             <Route path='/dashboard' element={<Dashboard />} />
             <Route path='/info' element={<Info/>} />
             <Route path='/addquestion' element={<Add />} />
+            <Route path='/forg' element={<Forg />} />
           </Routes>
         </BrowserRouter>
       </Categ>

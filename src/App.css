@@ -37,8 +37,17 @@ h1{
     width: 30px;
     height: 30px;
 }
+.grey{
+    background-color:#726C6C;
+    padding: 15px 25px ;
+    top: 25px;
+    border-radius: 20px;
+    width: 200px;
+    margin: auto;
+    position: relative;
+}
 .founder{
-    background-color:#ff8421;
+    background-color:#FB9557;
     padding: 50px 50px;
     border-radius: 50px;
     
