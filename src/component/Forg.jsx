@@ -19,7 +19,7 @@ const Forg = () => {
 
   const send = async (password) => {
     try {
-      const res2 = await axios.post('http://psychological-scale.onrender.com/send-email', {
+      const res2 = await axios.post('https://psychological-scale.onrender.com/send-email', {
         to: email,
         subject: 'مركز خدات تقدير الذات',
         text: `كلمة المرور الخاصة بك هي : ${password}`,
