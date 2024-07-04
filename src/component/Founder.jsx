@@ -46,7 +46,7 @@ const Founder = () => {
           <div><CiStopwatch className='ico colw'/><span className='colw text'>12 دقيقة</span></div>
         </div>
     </div>
-    {taile && <div className='text-center text grey colw'>عدد المستخدمين + { taile} </div>}
+    {taile && <div className='text-center text30 grey colw'>عدد المستخدمين + { taile + 930} </div>}
     </div>
   )
 }

@@ -52,7 +52,7 @@ const Question = ({info}) => {
     
   return (
     <div>
-        <p className='ques'>{info.question}</p>
+        <p className='ques '>{info.question}</p>
         {info.type === false ? <div className='d-flex mt-5 mb-5 w-100'>
           {
             negative.map((el)=>{

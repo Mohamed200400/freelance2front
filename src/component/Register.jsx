@@ -12,6 +12,13 @@ const Register = () => {
   const [name ,setName]  = useState("")
   const [gender,setGender] = useState("")
   const [age,setAge] = useState("")
+  const [loading,setLoading] = useState(false)
+
+  const handle_lo = async(e)=>{
+    e.preventDefault()
+    setLoading(true)
+    
+  }
 
   const fetch_register = async()=>{
     try{
@@ -38,7 +45,8 @@ const Register = () => {
 
   return (
     <div className='w'>
-    <h1 className='mb-5'>صفحة إنشاء حساب</h1>
+      {loading && <div className='cont col-md-6 col-sm-12 col-12 h-100 '><div className="loading-circle"></div></div>}
+    <h1 className='mb-5 mt-4'>صفحة إنشاء حساب</h1>
     <div className='left text mt-1'>الإسم</div>
     <input className='text' type='text' onChange={(e)=>{setName(e.target.value)}} required />
     <div className='left text'>البريد الإلكتروني</div>
@@ -67,7 +75,8 @@ const Register = () => {
 
     <button
     className='text mt-4 mb-3  btn1'
-    onClick={()=>{
+    onClick={(e)=>{
+      handle_lo(e)
       fetch_register()
     }}
     >إنشاء حساب</button>
