@@ -20,7 +20,7 @@ const Login = () => {
 
   const fetch_login = async () => {
     try {
-      const res = await axios.post('https://psychological-scale.onrender.com/api/login', {
+      const res = await axios.post('https://psychological-scale-nij9.onrender.com/api/login', {
         email: email,
         password: password,
       });

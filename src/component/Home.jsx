@@ -22,7 +22,7 @@ const Home = () => {
 
   const fetch_question = async ()=>{
     try{
-      const res = await axios.get("https://psychological-scale.onrender.com/api/question")
+      const res = await axios.get("https://psychological-scale-nij9.onrender.com/api/question")
       setQuestions(res.data)
     }catch(err){
       console.log({message : err.message});
@@ -31,7 +31,7 @@ const Home = () => {
 
   const fetch_len = async ()=>{
     try{
-      const res = await axios.get("https://psychological-scale.onrender.com/api/user")
+      const res = await axios.get("https://psychological-scale-nij9.onrender.com/api/user")
       setTaile(res.data.length)
     }catch(err){
       console.log({message : err.message});

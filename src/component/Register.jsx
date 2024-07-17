@@ -22,7 +22,7 @@ const Register = () => {
 
   const fetch_register = async()=>{
     try{
-      const res = await axios.post("https://psychological-scale.onrender.com/api/register",{
+      const res = await axios.post("https://psychological-scale-nij9.onrender.com/api/register",{
       name : name ,
       email : email ,
       password : password ,

@@ -11,7 +11,7 @@ const Founder = () => {
   const fetch_len = async ()=>{
     try{
       // https://psychological-scale.onrender.com
-      const res = await axios.get("https://psychological-scale.onrender.com/api/user")
+      const res = await axios.get("https://psychological-scale-nij9.onrender.com/api/user")
       setTaile(res.data.length)
      
     }catch(err){

@@ -13,7 +13,7 @@ const Forg = () => {
 
   const fetch_login = async () => {
     try {
-      const res = await axios.post('https://psychological-scale.onrender.com/api/user', {
+      const res = await axios.post('https://psychological-scale-nij9.onrender.com/api/user', {
         email: email,
       });
       await setMsg("لقد تم إرسال كلمة المرور إلى بريدك الإلكتروني")
@@ -29,7 +29,7 @@ const Forg = () => {
 
   const send = async (password) => {
     try {
-      const res2 = await axios.post('https://psychological-scale.onrender.com/send-email', {
+      const res2 = await axios.post('https://psychological-scale-nij9.onrender.com/send-email', {
         to: email,
         subject: 'مركز خدمات تقدير الذات',
         text:` كلمة المرور الخاصة بك هي : ${password}`,

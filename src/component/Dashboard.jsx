@@ -7,7 +7,7 @@ const Dashboard = () => {
   const [up,setUp] = useState(false)
   const fetch_cat1 = async(cat)=>{
     try{
-      const res = await axios.get("https://psychological-scale.onrender.com/api/question/"+cat)
+      const res = await axios.get("https://psychological-scale-nij9.onrender.com/api/question/"+cat)
       setFamilly([...res.data])
     }catch(err){
       console.log({message  : err.message});
@@ -18,7 +18,7 @@ const Dashboard = () => {
   const [soc,setSoc] = useState([])
   const fetch_cat2 = async(cat)=>{
     try{
-      const res = await axios.get("https://psychological-scale.onrender.com/api/question/"+cat)
+      const res = await axios.get("https://psychological-scale-nij9.onrender.com/api/question/"+cat)
       setSoc([...res.data])
     }catch(err){
       console.log({message  : err.message});
@@ -28,7 +28,7 @@ const Dashboard = () => {
   const [idk,setIdk] = useState([])
   const fetch_cat3 = async(cat)=>{
     try{
-      const res = await axios.get("https://psychological-scale.onrender.com/api/question/"+cat)
+      const res = await axios.get("https://psychological-scale-nij9.onrender.com/api/question/"+cat)
       setIdk([...res.data])
     }catch(err){
       console.log({message  : err.message});
@@ -37,7 +37,7 @@ const Dashboard = () => {
   var i = 1
   const fdelete = async(id)=>{
     try{
-      const res = await axios.delete("https://psychological-scale.onrender.com/api/question/"+id)
+      const res = await axios.delete("https://psychological-scale-nij9.onrender.com/api/question/"+id)
       setUp(prev => !prev)
     }catch(err){
       console.log({message  : err.message});

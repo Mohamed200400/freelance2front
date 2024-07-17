@@ -28,7 +28,7 @@ const Info = () => {
 
   const all = async () => {
     try {
-      const res = await axios.get('https://psychological-scale.onrender.com/api/user');
+      const res = await axios.get('https://psychological-scale-nij9.onrender.com/api/user');
       setLength(res.data.length);
       setUser(res.data.user);
       setPercent(100 / res.data.length);
@@ -39,7 +39,7 @@ const Info = () => {
 
   const boy = async () => {
     try {
-      const res = await axios.get('https://psychological-scale.onrender.com/api/user/male');
+      const res = await axios.get('https://psychological-scale-nij9.onrender.com/api/user/male');
       setMale_length(res.data.length);
     } catch (err) {
       console.error(err);
@@ -58,14 +58,14 @@ const Info = () => {
         age7Res,
         age8Res
       ] = await Promise.all([
-        axios.get('https://psychological-scale.onrender.com/api/user/25-18 سنة'),
-        axios.get('https://psychological-scale.onrender.com/api/user/30-25 سنة'),
-        axios.get('https://psychological-scale.onrender.com/api/user/35-30 سنة'),
-        axios.get('https://psychological-scale.onrender.com/api/user/40-35 سنة'),
-        axios.get('https://psychological-scale.onrender.com/api/user/45-40 سنة'),
-        axios.get('https://psychological-scale.onrender.com/api/user/50-45 سنة'),
-        axios.get('https://psychological-scale.onrender.com/api/user/55-50 سنة'),
-        axios.get('https://psychological-scale.onrender.com/api/user/55 سنة فأكثر')
+        axios.get('https://psychological-scale-nij9.onrender.com/api/user/25-18 سنة'),
+        axios.get('https://psychological-scale-nij9.onrender.com/api/user/30-25 سنة'),
+        axios.get('https://psychological-scale-nij9.onrender.com/api/user/35-30 سنة'),
+        axios.get('https://psychological-scale-nij9.onrender.com/api/user/40-35 سنة'),
+        axios.get('https://psychological-scale-nij9.onrender.com/api/user/45-40 سنة'),
+        axios.get('https://psychological-scale-nij9.onrender.com/api/user/50-45 سنة'),
+        axios.get('https://psychological-scale-nij9.onrender.com/api/user/55-50 سنة'),
+        axios.get('https://psychological-scale-nij9.onrender.com/api/user/55 سنة فأكثر')
       ]);
 
       setAge1(age1Res.data.length);

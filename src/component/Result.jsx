@@ -71,7 +71,7 @@ const Result = () => {
     try {
       
       
-       const res = await axios.post("https://psychological-scale.onrender.com/api/user",{
+       const res = await axios.post("https://psychological-scale-nij9.onrender.com/api/user",{
         email : emailp
       })
       setUser(res.data[0])
@@ -90,7 +90,7 @@ const Result = () => {
 
     try {
 
-       const res = await axios.put("https://psychological-scale.onrender.com/api/user/res",{
+       const res = await axios.put("https://psychological-scale-nij9.onrender.com/api/user/res",{
         email : emailp,
         result : resu
       })
@@ -105,9 +105,9 @@ const Result = () => {
   const fetchLengths = async () => {
     try {
       const [res1, res2, res3] = await Promise.all([
-        axios.get("https://psychological-scale.onrender.com/api/question/d1/length"),
-        axios.get("https://psychological-scale.onrender.com/api/question/d2/length"),
-        axios.get("https://psychological-scale.onrender.com/api/question/d3/length")
+        axios.get("https://psychological-scale-nij9.onrender.com/api/question/d1/length"),
+        axios.get("https://psychological-scale-nij9.onrender.com/api/question/d2/length"),
+        axios.get("https://psychological-scale-nij9.onrender.com/api/question/d3/length")
       ])
 
       setP1(res1.data.length)

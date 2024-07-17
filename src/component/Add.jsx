@@ -9,7 +9,7 @@ const Add = () => {
     const [po , setPo] = useState(null)
     const fetch_add = async()=>{
         try{
-            const res = await axios.post("https://psychological-scale.onrender.com/api/question",{
+            const res = await axios.post("https://psychological-scale-nij9.onrender.com/api/question",{
                 question : qu ,
                 category : ty ,
                 type : po
