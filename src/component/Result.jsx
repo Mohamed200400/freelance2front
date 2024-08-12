@@ -44,9 +44,9 @@ const Result = () => {
     html2canvas(input)
       .then((canvas) => {
         const imgData = canvas.toDataURL('image/png');
-        const pdf = new jsPDF('p', 'mm', 'a4');
-        const imgWidth = 210; // A4 width in mm
-        const pageHeight = 295; // A4 height in mm
+        const pdf = new jsPDF('p', 'mm', 'a3');
+        const imgWidth = 297; // A4 width in mm
+        const pageHeight = 500; // A4 height in mm
         const imgHeight = (canvas.height * imgWidth) / canvas.width;
         let heightLeft = imgHeight;
         let position = 0;
@@ -221,30 +221,31 @@ const Result = () => {
 
 
   return (
-    <div className='w-100 max m-auto' ref={pdfRef} >
+    <div className='w-100 max m-auto'>
+    <div className='w-100 max m-auto content' ref={pdfRef} >
       <div ref={contentToPrint}>
       {ra && <div className='w-85 max m-auto' >
-        <h1 className=' tit mb-5'>نتيجة مقياس تقدير الذات</h1>
+        <h1 className=' tit mb-2 mt-3'>نتيجة مقياس تقدير الذات</h1>
 
         {user && <ul>
-          <div className='d-flex'><li className='ms-3 mb-3 text'>الاسم :   </li> <label className='text'>{user.name}</label></div>
-          <div className='d-flex'><li className='ms-3 mb-3 text'>	الجنس : </li><label className='text'>{user.gender}</label></div>
-          <div className='d-flex'><li className='ms-3 mb-3 text'>	العمر : </li><label className='text'>{user.age}</label></div>
-          <div className='d-flex'><li className='ms-3 mb-3 text'>	تاريخ إجراء القياس:  </li> <label className='text'>{date.slice(0,10)}</label></div>
+          <div className='d-flex'><li className='ms-3 mb-1 text'>الاسم :   </li> <label className='text'>{user.name}</label></div>
+          <div className='d-flex'><li className='ms-3 mb-1 text'>	الجنس : </li><label className='text'>{user.gender}</label></div>
+          <div className='d-flex'><li className='ms-3 mb-1 text'>	العمر : </li><label className='text'>{user.age}</label></div>
+          <div className='d-flex'><li className='ms-3 mb-1 text'>	تاريخ إجراء القياس:  </li> <label className='text'>{date.slice(0,10)}</label></div>
         </ul>}
         
         
-        <table className='tab mt-5 mb-5 w-100'>
+        <table className='tab mt-1 mb-1 w-100'>
           <thead className='tab'>
-            <th className='tab text-center text30 b1 colw' colSpan={2}>المستوى العام لتقدير الذات</th>
+            <th className='tab text-center text25 b1 colw' colSpan={2}>المستوى العام لتقدير الذات</th>
           </thead>
           <tbody className='tab'>
             <tr>
-            <td className='tab text25 b2'>مستوى <span className='fw-bold colg'>{ra}</span> لتقدير الذات</td>
-            <td className='tab text25 b2'>النسبة <span className='fw-bold colg'>{`${((totR / (p1 + p2 + p3)) * 20).toFixed(2)} % `}</span></td>
+            <td className='tab  b2'>مستوى <span className='fw-bold colg'>{ra}</span> لتقدير الذات</td>
+            <td className='tab  b2'>النسبة <span className='fw-bold colg'>{`${((totR / (p1 + p2 + p3)) * 20).toFixed(2)} % `}</span></td>
             </tr>
             <tr>
-              <td className='tab text25 b2' colSpan={2}>{text && text}</td>
+              <td className='tab  b2' colSpan={2}>{text && text}</td>
             </tr>
           </tbody>
         </table>
@@ -253,25 +254,25 @@ const Result = () => {
         
 
 
-        <table className='tab2 mt-5 mb-5 w-90'>
+        <table className='tab2 mt-2 mb-3 w-100'>
           <thead className='tab'>
-            <th className='tab text-center text30 b1 colw' colSpan={3}>مستويات أبعاد تقدير الذات</th>
+            <th className='tab text-center text25 b1 colw' colSpan={3}>مستويات أبعاد تقدير الذات</th>
           </thead>
           <tbody className='tab'>
             <tr className='tab '>
-            <td className='tab text25 b2'>البعد الشخصي</td>
-            <td className='tab  text25 b2'>البعد الأسري</td>
-            <td className='tab text25 b2'>البعد الإجتماعي</td>
+            <td className='tab  b2'>البعد الشخصي</td>
+            <td className='tab  b2'>البعد الأسري</td>
+            <td className='tab  b2'>البعد الإجتماعي</td>
             </tr>
             <tr className='tab'>
-              <td className='tab text25 b2'>النسبة <span className='fw-bold colg'>{`${((result.d1 / p1) * 20).toFixed(2)} % `}</span></td>
-              <td className='tab text25 b2'>النسبة <span className='fw-bold colg'> {`${((result.d2 / p2) * 20).toFixed(2)} % `}</span></td>
-              <td className='tab text25 b2'>النسبة <span className='fw-bold colg'> {`${((result.d3 / p3) * 20).toFixed(2)} % `}</span></td>
+              <td className='tab  b2'>النسبة <span className='fw-bold colg'>{`${((result.d1 / p1) * 20).toFixed(2)} % `}</span></td>
+              <td className='tab  b2'>النسبة <span className='fw-bold colg'> {`${((result.d2 / p2) * 20).toFixed(2)} % `}</span></td>
+              <td className='tab  b2'>النسبة <span className='fw-bold colg'> {`${((result.d3 / p3) * 20).toFixed(2)} % `}</span></td>
             </tr>
             <tr className='tab'>
-            <td className='tab text25 b2'>مستوى <span className='fw-bold colg'>{ra1}</span> لتقدير الذات</td>
-            <td className='tab text25 b2'>مستوى <span className='fw-bold colg'>{ra2}</span> لتقدير الذات</td>
-            <td className='tab text25 b2'>مستوى <span className='fw-bold colg'>{ra3}</span> لتقدير الذات</td>
+            <td className='tab  b2'>مستوى <span className='fw-bold colg'>{ra1}</span> لتقدير الذات</td>
+            <td className='tab  b2'>مستوى <span className='fw-bold colg'>{ra2}</span> لتقدير الذات</td>
+            <td className='tab  b2'>مستوى <span className='fw-bold colg'>{ra3}</span> لتقدير الذات</td>
             </tr>
           </tbody>
         </table>
@@ -279,6 +280,7 @@ const Result = () => {
         
         </div>
         }
+        <div className='m-auto'>
         <div className='w-100 d-flex justify-content-between tt mb-3'>
       <span className='w-27 '>0%</span>
       <span className='w-27'>35.8%</span>
@@ -309,18 +311,22 @@ const Result = () => {
       <span className='w-20'>مرتفع جدا</span>
 
     </div>
+    </div>
 
     <div className='d-flex row'>
-        <div>
-    <button className='text mt-5 mb-3  btn1 btn2 me-2 '  onClick={handlePrint}>طباعة  </button> 
-    <button className='text mt-5 mb-3  btn1 btn2 me-2' onClick={downloadPDF}> تحميل PDF</button> 
-    <button className='text mt-5 mb-3  btn1 btn2 '><Link className='add2' to={'/'}>تسجيل الخروج </Link></button> 
-    </div>
+       
     
-    <div className='text-center text mt-3'>حقوق مقياس تقدير الذات للكبار محفوظة
+    <div className='text-center text mt-2'>حقوق مقياس تقدير الذات للكبار محفوظة
     لدى مركز تقدير الذات</div>
-    <div className='text-center text mt-2'>هل ترغب بتحسين وتعزيز تقديرك لذاتك؟ <a href='https://selfesteem.com.sa/' target='_blank'>إضغط هنا</a></div>
+    <div className='text-center text mt-1'>هل ترغب بتحسين وتعزيز تقديرك لذاتك؟ <a href='https://selfesteem.com.sa/' target='_blank'>إضغط هنا</a></div>
     </div>
+    </div>
+    </div>
+
+    <div>
+    <button className='text mt-5 mb-3  btn1 btn2 me-2 '  onClick={handlePrint}>طباعة  </button> 
+    <button className='text mt-5 mb-3  btn1 btn2 me-2' onClick={downloadPDF}  > تحميل PDF</button> 
+    <button className='text mt-5 mb-3  btn1 btn2 '><Link className='add2' to={'/'}>تسجيل الخروج </Link></button> 
     </div>
     </div>
   )

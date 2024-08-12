@@ -66,7 +66,7 @@ h1{
 }
 .colg{
     color: rgb(76, 95, 76);
-    font-size: 24px;
+    font-size: 18px;
 }
 .tt1{
     display: flex;
@@ -264,3 +264,28 @@ h1{
 .tab2{
     border-radius: 50px;
 }
+@media print {
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      
+    }
+  
+    @page {
+      size: A3; /* Use a standard page size, adjust as needed */
+      margin: 10px;
+    }
+  
+    div {
+      page-break-inside: avoid; /* Prevent page breaks inside elements */
+    }
+  
+    /* Scale content to fit a single page */
+    .content {
+      transform: scale(0.75); /* Adjust the scale as needed */
+      transform-origin: top left;
+      width: 100%;
+    }
+  }
+  
