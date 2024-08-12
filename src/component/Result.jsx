@@ -242,7 +242,7 @@ const Result = () => {
           <tbody className='tab'>
             <tr>
             <td className='tab  b2'>مستوى <span className='fw-bold colg'>{ra}</span> لتقدير الذات</td>
-            <td className='tab  b2'>النسبة <span className='fw-bold colg'>{`${((totR / (p1 + p2 + p3)) * 20).toFixed(2)} % `}</span></td>
+            <td className='tab  b2'>النسبة <span className='fw-bold colg'>{((totR / (p1 + p2 + p3)) * 20).toFixed(2)} % </span></td>
             </tr>
             <tr>
               <td className='tab  b2' colSpan={2}>{text && text}</td>
@@ -265,9 +265,9 @@ const Result = () => {
             <td className='tab  b2'>البعد الإجتماعي</td>
             </tr>
             <tr className='tab'>
-              <td className='tab  b2'>النسبة <span className='fw-bold colg'>{`${((result.d1 / p1) * 20).toFixed(2)} % `}</span></td>
-              <td className='tab  b2'>النسبة <span className='fw-bold colg'> {`${((result.d2 / p2) * 20).toFixed(2)} % `}</span></td>
-              <td className='tab  b2'>النسبة <span className='fw-bold colg'> {`${((result.d3 / p3) * 20).toFixed(2)} % `}</span></td>
+              <td className='tab  b2'>النسبة <span className='fw-bold colg'>{((result.d1 / p1) * 20).toFixed(2)} % </span></td>
+              <td className='tab  b2'>النسبة <span className='fw-bold colg'> {((result.d2 / p2) * 20).toFixed(2)} % </span></td>
+              <td className='tab  b2'>النسبة <span className='fw-bold colg'> {((result.d3 / p3) * 20).toFixed(2)} % </span></td>
             </tr>
             <tr className='tab'>
             <td className='tab  b2'>مستوى <span className='fw-bold colg'>{ra1}</span> لتقدير الذات</td>
@@ -280,8 +280,8 @@ const Result = () => {
         
         </div>
         }
-        <div className='m-auto mt-3'>
-        <div className='w-100 d-flex justify-content-between tt mt-5 mb-3'>
+        <div className='m-auto'>
+        <div className='w-100 d-flex justify-content-between tt mb-3'>
       <span className='w-27 '>0%</span>
       <span className='w-27'>35.8%</span>
       <span className='w-27 '>51.8%</span>
